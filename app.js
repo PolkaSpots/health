@@ -2,6 +2,15 @@ var util = require( 'util' );
 var mongoose = require('mongoose');
 var journey = require('journey');
 var winston = require('winston');
+var https = require('https');
+var fs = require('fs');
+var options = {
+  key: fs.readFileSync('./ssl/cert.key'),
+  cert: fs.readFileSync('./ssl/cert.pem'),
+  // ca: fs.readFileSync('./ssl/gd_bundle.crt')
+};
+
+
 
 winston.log('info', 'Hello distributed log files!');
 
@@ -44,6 +53,7 @@ router.map(function () {
 
   // this.get(/^events\/(\d+)$/).bind(function (req, res, id) {
   this.get("/api/v1/flume").bind(function (req, res, params) {
+    console.log(req)
     Clients.findOne({ unique_id: params.id }, 'meraki_validator', function (err, client) {
       if (err == null && client != null) {
         res.send(200, {}, client.meraki_validator); // PS HQ
@@ -107,3 +117,17 @@ require('http').createServer(function (request, response) {
     });
   });
 }).listen(8000);
+
+https.createServer(options,function (request, response) {
+
+  var body = "";
+
+  request.addListener('data', function (chunk) { body += chunk });
+  request.addListener('end', function () {
+
+    router.handle(request, body, function (result) {
+      response.writeHead(result.status, result.headers);
+      response.end(result.body);
+    });
+  });
+}).listen(8444);
