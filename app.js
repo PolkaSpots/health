@@ -7,12 +7,11 @@ var fs = require('fs');
 var options = {
   key: fs.readFileSync('./ssl/cert.key'),
   cert: fs.readFileSync('./ssl/cert.pem'),
-  // ca: fs.readFileSync('./ssl/gd_bundle.crt')
 };
 
 
 
-winston.log('info', 'Hello distributed log files!');
+winston.log('info', 'Hello world');
 
 var logger = new winston.Logger({
   transports: [
@@ -51,7 +50,6 @@ router.map(function () {
     res.send(200, {}, {message:"I'm doing it with Tony, are you?"});
   });
 
-  // this.get(/^events\/(\d+)$/).bind(function (req, res, id) {
   this.get("/api/v1/flume").bind(function (req, res, params) {
     console.log(req)
     Clients.findOne({ unique_id: params.id }, 'meraki_validator', function (err, client) {
@@ -130,4 +128,4 @@ https.createServer(options,function (request, response) {
       response.end(result.body);
     });
   });
-}).listen(8444);
+}).listen(8443);
