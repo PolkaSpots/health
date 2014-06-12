@@ -9,6 +9,10 @@
     "winston": "*",
     "journey": "*",
     "util": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "amqp": "*",
+    "supertest": "*",
+    "express": "*"
+
   }
 }
