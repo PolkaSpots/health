@@ -12,7 +12,7 @@
     "mongoose": "*",
     "amqp": "*",
     "supertest": "*",
-    "express": "*"
-
+    "express": "*",
+    "elasticsearch": "*"
   }
 }

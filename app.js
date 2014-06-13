@@ -32,9 +32,9 @@ app.post('/api/v1/flume', routes.post_flume)
 
 var amqp = require("./lib/amqp")
 
-https.createServer(options, app).listen(app.get("ssl_port"), function() {
-  console.log('SSL Server listening on port %d', app.get('ssl_port'));
-})
+// https.createServer(options, app).listen(app.get("ssl_port"), function() {
+//   console.log('SSL Server listening on port %d', app.get('ssl_port'));
+// })
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Server listening on port %d', app.get('port'));

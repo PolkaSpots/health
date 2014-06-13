@@ -22,7 +22,7 @@ exports.get_flume = function(req, res) {
 exports.post_flume = function(req, res) {
   var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
-  console.log(req.text)
+  console.log("Processing...")
   client.getSecret(query.id, function(secret) {
     if (secret == false) {
       res.send(404)
@@ -30,6 +30,7 @@ exports.post_flume = function(req, res) {
     else {
       array = JSON.parse(req.body.data);
       if (array.secret == secret) {
+        console.log("Post req, secret matches")
         stream.batchCreate(array, function() {})
       }
       res.send(200);
