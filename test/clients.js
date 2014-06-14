@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var client = require('../lib/clients');
-var config = require('./config-debug');
+var config = require('../lib/config');
 mongoose.connect(config.db.mongodb);
 
 describe("Clients", function(){

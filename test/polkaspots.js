@@ -1,5 +1,5 @@
 var ps = require('../lib/polkaspots');
-var config = require('./config-debug');
+var config = require('../lib/config');
 
 describe("Polkaspots", function(){
 
