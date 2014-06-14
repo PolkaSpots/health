@@ -29,6 +29,7 @@ mongoose.connect(config.db.mongodb);
 app.get('/', routes.index)
 app.get('/api/v1/flume', routes.get_flume)
 app.post('/api/v1/flume', routes.post_flume)
+app.get('/api/v1/temp', routes.temp)
 
 var amqp = require("./lib/amqp")
 

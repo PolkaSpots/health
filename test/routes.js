@@ -2,7 +2,7 @@ var should = require('should');
 var assert = require('assert');
 
 var mongoose = require('mongoose');
-var config = require('../lib/config');
+var config = require('./config');
 var client = require('../lib/clients');
 
 var request = require('supertest')

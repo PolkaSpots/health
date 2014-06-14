@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var client = require('../lib/clients');
 var nas = require('../lib/nas');
 var stream = require('../lib/streams');
-var config = require('../lib/config');
+var config = require('./config');
 // mongoose.connect(config.db.mongodb);
 
 describe("Streams", function(){
@@ -123,8 +123,9 @@ describe("Streams", function(){
   it("should reindex the mother fucking data base", function(done){
 
     stream.create(options, function(doc) {
-      stream.reindex(function(resp) {
-        console.log(resp)
+      index_name = "stream"
+      stream.reindex(index_name, function(resp) {
+        console.log("Response: " + resp)
         done();
       })
     })

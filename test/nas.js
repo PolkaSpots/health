@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var nas = require('../lib/nas');
-var config = require('../lib/config');
+var config = require('./config');
 // mongoose.connect(config.db.mongodb);
 
 describe("Nas", function(){

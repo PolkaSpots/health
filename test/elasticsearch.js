@@ -2,7 +2,7 @@ var client = require('../lib/clients');
 var nas = require('../lib/nas');
 var es = require('../lib/elasticsearch');
 var stream = require('../lib/streams');
-var config = require('../lib/config');
+var config = require('./config');
 
 var elasticsearch = require('elasticsearch');
 var _client = new elasticsearch.Client({
