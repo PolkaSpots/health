@@ -13,6 +13,8 @@
     "amqp": "*",
     "supertest": "*",
     "express": "*",
-    "elasticsearch": "*"
+    "elasticsearch": "*",
+    "mocha": "*",
+    "shoulda": "*"
   }
 }
