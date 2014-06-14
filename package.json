@@ -14,7 +14,7 @@
     "amqp": "*",
     "supertest": "*",
     "express": "*",
-    "elasticsearch": "*",
+    "elasticsearch": "2.2.0",
     "mocha": "*",
     "shoulda": "*"
   }
