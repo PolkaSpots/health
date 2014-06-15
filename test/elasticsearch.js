@@ -30,9 +30,8 @@ describe("Elasticsearch", function(){
     es.create_aliases(index_name, function(alias_name) {
       es.client.indices.getMapping({
         index: alias_name,
-        // type: 'stream'
       }, function(err,res) {
-        res[alias_name]["mappings"][alias_name]["properties"].should.not.equal([])
+        res[alias_name]["mappings"][index_name]["properties"].should.not.equal([])
         done();
       })
     })
