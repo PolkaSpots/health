@@ -131,6 +131,32 @@ describe("Streams", function(){
     })
   })
 
+  it("should clean macs and import details from nas", function(done){
+    secret = 123,
+    ap_mac = '00:22:22:33:44:55'
+    client_mac = '00:11:22:33:44:55'
+    options = {
+      ap_mac: ap_mac,
+      rssi: 12,
+      is_associated: true,
+      client_mac: client_mac,
+      last_seen: "12312312",
+      meraki_secret: secret,
+      created_at: (new Date).getTime(),
+      location_id: 123,
+      lonitude: 22,
+      latitude: 0.1,
+      description: "Hello"
+    }
+
+    stream.create(options, function(doc) {
+      stream.clean(function(doc) {
+        doc[0].ap_mac.should.equal("00-22-22-33-44-55")
+        done();
+      })
+    })
+  });
+
   // it("should save the entire stream - with ap_mac found", function(done) {
 
   //   ap_mac_1 = '00-18-0A-33-2E-F2'

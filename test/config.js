@@ -7,6 +7,6 @@ module.exports = {
   },
   "es": {
     "host": "127.0.0.1",
-    "port": "9200"
+    "port": "9205"
   },
 };
