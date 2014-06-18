@@ -24,12 +24,35 @@ exports.get_flume = function(req, res) {
   });
 }
 
-exports.temp = function(req, res) {
+exports.reindex = function(req, res) {
 
-  queue.publish(123)
-  res.send(200)
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  if (query.auth = '123') {
+    stream.reindex(query.index, function(done) {
+      console.log("Reindexing: " + done);
+    })
+    res.send(200)
+  }
+  else {
+    res.send(404)
+  }
 
+}
 
+exports.clean = function(req, res) {
+
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  if (query.auth = '123') {
+    stream.reindex(query.index, function(done) {
+      console.log("Reindexing: " + done);
+    })
+    res.send(200)
+  }
+  else {
+    res.send(200)
+  }
 }
 
 exports.post_flume = function(req, res) {
