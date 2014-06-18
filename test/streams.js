@@ -68,6 +68,7 @@ describe("Streams", function(){
 
     stream.create(options, function(doc) {
       stream.findAll(function(doc) {
+        console.log("sssssssssssss" + doc)
         doc[0].ap_mac.should.equal(ap_mac)
         done();
       })
@@ -150,8 +151,11 @@ describe("Streams", function(){
     }
 
     stream.create(options, function(doc) {
+      console.log(doc)
       stream.clean(function(doc) {
-        doc[0].ap_mac.should.equal("00-22-22-33-44-55")
+        console.log(doc + "asdfasdfasdfasdf")
+        doc.should.equal(true)
+        // doc[0].ap_mac.should.equal("00-22-22-33-44-55")
         done();
       })
     })
