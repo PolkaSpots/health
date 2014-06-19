@@ -37,6 +37,20 @@ describe("Elasticsearch", function(){
     })
   })
 
+  it("should test the bulk api", function(done) {
+    var index_name = 'poo'
+    var doc = [
+      { index: { _index: 'poo', _type: 'poo' } },
+      { simon: 123 },
+      { index: { _index: 'poo', _type: 'poo' } },
+      { simon: 456 }
+    ]
+    es.bulk(index_name, doc, function(doc) {
+      // console.log(doc)
+    })
+    done();
+  })
+
   it("should swap the mappings / index over", function(done) {
 
     var index_name = 'test'

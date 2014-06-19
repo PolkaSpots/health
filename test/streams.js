@@ -130,6 +130,15 @@ describe("Streams", function(){
     })
   })
 
+  it("should test the database connection", function(done){
+    stream.findMongo('test', function(docs) {
+      console.log(docs)
+
+
+      done()
+    })
+  })
+
   it("should clean macs and import details from nas", function(done){
     secret = 123,
     ap_mac = '00:22:22:33:44:55'
