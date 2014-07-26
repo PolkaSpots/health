@@ -18,6 +18,7 @@ var url = require('url');
 var mongo = require('mongodb');
 var status;
 var db;
+var auth;
 
 var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
