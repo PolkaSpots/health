@@ -23,7 +23,8 @@ var MongoClient = require('mongodb').MongoClient
     , format = require('util').format;
 
 if(process.env.MONGOHQ_URL) {
-  MongoClient.connect(process.env.MONGOHQ_URL, function(err, db) {
+  // MongoClient.connect(process.env.MONGOHQ_URL, function(err, db) {
+  MongoClient.connect("mongodb://heroku:6b3c2645aa297908264523a982076446@lennon.mongohq.com:10071/app27828396", function(err, db) {
       if(err) throw err;
       db = db;
       status = db.collection('status');
