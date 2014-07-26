@@ -24,24 +24,28 @@ var MongoClient = require('mongodb').MongoClient
 
 if(process.env.MONGOHQ_URL) {
   MongoClient.connect(process.env.MONGOHQ_URL, function(err, db) {
-    // MongoClient.connect("mongodb://heroku:6b3c2645aa297908264523a982076446@lennon.mongohq.com:10071/app27828396", function(err, db) {
-      if(err) throw err;
-      db = db;
-      status = db.collection('status');
+    if(err) throw err;
+    db = db;
+    status = db.collection('status');
   })
 } else {
   MongoClient.connect('mongodb://127.0.0.1/health', function(err, db) {
-      if(err) throw err;
-      db = db;
-      status = db.collection('status');
+    if(err) throw err;
+    db = db;
+    status = db.collection('status');
   })
 }
 
 app.get('/api/v1/health', function(req, res) {
   console.log(process.env)
   status.find({}).limit(1).sort({created_at: -1}).toArray(function(err, docs) {
-    // res.status(docs[0].code);
-    res.json(JSON.stringify({message: docs}));
+    if(docs) {
+      res.status(docs[0].code);
+      res.json(JSON.stringify({message: docs}));
+    } else {
+      res.status(200)
+      res.json(JSON.stringify({message: "No status"}));
+    }
   })
 });
 
