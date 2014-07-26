@@ -28,6 +28,7 @@ if(process.env.MONGOHQ_URL) {
     if(err) throw err;
     db = db;
     status = db.collection('status');
+    auth = db.collection('auth');
   })
 } else {
   MongoClient.connect('mongodb://127.0.0.1/health', function(err, db) {
