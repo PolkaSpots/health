@@ -33,6 +33,7 @@ if(process.env.MONGOHQ_URL) {
     if(err) throw err;
     db = db;
     status = db.collection('status');
+    auth = db.collection('auth');
   })
 }
 
@@ -54,14 +55,21 @@ app.post('/api/v1/health', function(req, res) {
   var url_parts = url.parse(req.url, true);
   var msg = url_parts.query.message
   var code = url_parts.query.code
-  if (url_parts.query.auth == 'AAAV5' && code && msg) {
-    _createStatus(msg, code, function(callback) {
-      res.json(JSON.stringify(callback[0]));
-    })
-  } else {
-    res.status(404)
-    res.send({message: "Not found"})
-  }
+  auth.find({}).limit(1).toArray(function(err, details) {
+    if (details.length) {
+      if (url_parts.query.auth == details[0].access_token && code && msg) {
+        _createStatus(msg, code, function(callback) {
+          res.json(JSON.stringify(callback[0]));
+        })
+      } else {
+        res.status(404)
+        res.send({message: "Not found"})
+      }
+    } else {
+      res.status(404)
+      res.send({message: "No user found"})
+    }
+  })
 });
 
 var _createStatus = function(message, code, callback) {
