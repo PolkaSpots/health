@@ -41,7 +41,7 @@ app.get('/api/v1/health', function(req, res) {
   status.find({}).limit(1).sort({created_at: -1}).toArray(function(err, docs) {
     if(docs.length) {
       res.status(docs[0].code);
-      res.json(JSON.stringify({message: docs}));
+      res.json(JSON.stringify({message: docs[0].created_at}));
     } else {
       res.status(200)
       res.json(JSON.stringify({message: "No status"}));
