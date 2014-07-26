@@ -46,7 +46,6 @@ app.get('/api/v1/health', function(req, res) {
 
 app.post('/api/v1/health', function(req, res) {
   var url_parts = url.parse(req.url, true);
-  console.log(url_parts.query.auth)
   var msg = url_parts.query.message
   var code = url_parts.query.code
   if (url_parts.query.auth == 'AAAV5' && code && msg) {
