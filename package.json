@@ -10,12 +10,9 @@
     "winston": "*",
     "journey": "*",
     "util": "*",
-    "mongoose": "*",
     "mongodb": "*",
-    "amqp": "*",
     "supertest": "*",
-    "express": "*",
-    "elasticsearch": "2.2.0",
+    "express": "3.4.x",
     "mocha": "*",
     "shoulda": "*",
     "underscore": "*"

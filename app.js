@@ -14,29 +14,8 @@ app.configure(function() {
 
 var routes = require('./routes/')
 var util = require( 'util' );
-var config = require('./lib/config');
-var mongoose = require('mongoose');
 
-var fs = require('fs');
-
-var options = {
-  key: fs.readFileSync('./ssl/cert.key'),
-  cert: fs.readFileSync('./ssl/cert.pem'),
-};
-
-mongoose.connect(config.db.mongodb);
-
-app.get('/', routes.index)
-app.get('/api/v1/flume', routes.get_flume)
-app.post('/api/v1/flume', routes.post_flume)
-app.post('/api/v1/reindex', routes.reindex)
-app.post('/api/v1/clean', routes.clean)
-
-var amqp = require("./lib/amqp")
-
-// https.createServer(options, app).listen(app.get("ssl_port"), function() {
-//   console.log('SSL Server listening on port %d', app.get('ssl_port'));
-// })
+app.get('/api/v1/health', routes.index)
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Server listening on port %d', app.get('port'));

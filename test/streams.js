@@ -124,7 +124,7 @@ describe("Streams", function(){
     stream.create(options, function(doc) {
       index_name = "stream"
       stream.reindex(index_name, function(resp) {
-        console.log(resp)
+        // console.log("asdf" + resp)
         done();
       })
     })
@@ -132,6 +132,7 @@ describe("Streams", function(){
 
   it("should test the database connection", function(done){
     stream.findMongo('test', function(docs) {
+      // pending //
       console.log(docs)
 
 
