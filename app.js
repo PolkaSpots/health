@@ -38,10 +38,11 @@ if(process.env.MONGOHQ_URL) {
 }
 
 app.get('/api/v1/health', function(req, res) {
-  status.find({}).limit(1).sort({created_at: -1}).toArray(function(err, docs) {
-    res.status(docs[0].code);
-    res.json(JSON.stringify({message: docs}));
-  })
+  console.log(process.env)
+  // status.find({}).limit(1).sort({created_at: -1}).toArray(function(err, docs) {
+    // res.status(docs[0].code);
+    res.json(JSON.stringify({message: 'docs'}));
+  // })
 });
 
 
